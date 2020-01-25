@@ -37,7 +37,7 @@ function nf_product_posttype() {
 		'label'                 => __( 'Product', 'nutrifacts' ),
 		'description'           => __( 'new post type for products.', 'nutrifacts' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
 		'taxonomies'            => array( 'product_category' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -100,7 +100,7 @@ function nf_product_taxonomy() {
 add_action( 'init', 'nf_product_taxonomy', 0 );
 
 // Register Brands Post Type
-function custom_post_type() {
+function nf_brand_posttype() {
 
 	$labels = array(
 		'name'                  => _x( 'Brands', 'Post Type General Name', 'text_domain' ),
@@ -135,7 +135,7 @@ function custom_post_type() {
 		'label'                 => __( 'Brand', 'text_domain' ),
 		'description'           => __( 'Post Type Description', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
 		'taxonomies'            => array( 'category' ),
 		'hierarchical'          => true,
 		'public'                => true,
@@ -160,6 +160,9 @@ add_action( 'init', 'custom_post_type', 0 );
  * Flush rewrite rules on activation.
  */
 function nf_rewrite_flush() {
-	post_type();
+	nf_product_posttype();
+	nf_product_taxonomy();
+	nf_brand_posttype();
 	flush_rewrite_rules();
 }
+
