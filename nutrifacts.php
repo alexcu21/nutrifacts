@@ -30,3 +30,21 @@ function my_save_error()
 {
 file_put_contents(dirname(__file__).’/error_activation.txt’, ob_get_contents());
 }
+
+
+add_filter('single_template', 'products_template');
+
+function products_template($single) {
+
+    global $post;
+
+    /* Checks for single template by post type */
+    if ( $post->post_type == 'products' ) {
+        if ( file_exists( plugin_dir_path(__FILE__) . '/single-products.php' ) ) {
+            return plugin_dir_path(__FILE__) . '/single-products.php';
+        }
+    }
+
+    return $single;
+
+}
