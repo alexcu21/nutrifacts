@@ -1,5 +1,5 @@
 <?php 
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Register Products Post Type
 function nf_product_posttype() {
@@ -37,7 +37,7 @@ function nf_product_posttype() {
 		'label'                 => __( 'Product', 'nutrifacts' ),
 		'description'           => __( 'new post type for products.', 'nutrifacts' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail' ),
 		'taxonomies'            => array( 'product_category' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -135,7 +135,7 @@ function nf_brand_posttype() {
 		'label'                 => __( 'Brand', 'text_domain' ),
 		'description'           => __( 'Post Type Description', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail' ),
 		'taxonomies'            => array( 'category' ),
 		'hierarchical'          => true,
 		'public'                => true,
@@ -154,7 +154,7 @@ function nf_brand_posttype() {
 	register_post_type( 'brands', $args );
 
 }
-add_action( 'init', 'custom_post_type', 0 );
+add_action( 'init', 'nf_brand_posttype', 0 );
 
 /**
  * Flush rewrite rules on activation.

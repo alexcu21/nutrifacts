@@ -1,20 +1,14 @@
 <?php 
 
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Use:  [nutrifacts]
-function nf_shortcode( $atts ) {
-    
-    $args = array(
-    'post_type' => 'products',
-);
+get_header();
 
-$products = new WP_Query($args); ?>
+ 
 
-<?php while($products->have_posts()) : $products->the_post(); ?>
+	while(have_posts()) : the_post(); ?>
 
-	
+
 	<?php 
 
 		$brand = get_field('brand');
@@ -27,13 +21,12 @@ $products = new WP_Query($args); ?>
 		 <p><?php the_content(); ?></p>
 		 <p>the brand is: <?php echo $brand_title; ?></p>
 		  <p>Rated with: <?php the_field('product_rating'); ?></p>
-		
 
-<?php endwhile; ?>
 
-<?php 
 
-wp_reset_postdata();
 
-}
-add_shortcode( 'nutrifacts', 'nf_shortcode' );
+<?php endwhile;
+
+
+
+get_footer();

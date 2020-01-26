@@ -1,5 +1,10 @@
    
 <?php
+
+/**
+* @package nutrifacts
+*/
+
 /*
 Plugin Name: WP NutriFacts
 Plugin URI:
@@ -11,6 +16,8 @@ License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: nutrifacts
 */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*
  * Register post types
@@ -31,20 +38,20 @@ function my_save_error()
 file_put_contents(dirname(__file__).’/error_activation.txt’, ob_get_contents());
 }
 
+/*
+* adding a new template: single-pruducts.php
+*/
 
-add_filter('single_template', 'products_template');
+add_filter('template_include', 'products_template', 50, 1);
 
-function products_template($single) {
+function products_template($template) {
 
-    global $post;
-
+    
     /* Checks for single template by post type */
-    if ( $post->post_type == 'products' ) {
-        if ( file_exists( plugin_dir_path(__FILE__) . '/single-products.php' ) ) {
-            return plugin_dir_path(__FILE__) . '/single-products.php';
-        }
+    if ( is_singular('products') && file_exists(plugin_dir_path(__FILE__) . 'templates/single-products.php')) {
+        $template = plugin_dir_path(__FILE__) . 'templates/single-products.php';
     }
 
-    return $single;
+    return $template;
 
 }
