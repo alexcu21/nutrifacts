@@ -32,10 +32,10 @@ register_activation_hook(__FILE__, 'nf_rewrite_flush');
  */
 require_once plugin_dir_path(__FILE__) . 'includes/nf_shortcode.php';
 
-add_action(‘activated_plugin’,’my_save_error’);
+add_action('activated_plugin','my_save_error');
 function my_save_error()
 {
-file_put_contents(dirname(__file__).’/error_activation.txt’, ob_get_contents());
+file_put_contents(dirname(__file__).'/error_activation.txt', ob_get_contents());
 }
 
 /*
@@ -55,3 +55,9 @@ function products_template($template) {
     return $template;
 
 }
+
+function nf_frontend_styles(){
+    wp_enqueue_style('nutrifacts-style', plugins_url('assets/css/nutrifacts-style.css' , __FILE__ ) );
+
+}
+add_action('wp_enqueue_scripts', 'nf_frontend_styles');
