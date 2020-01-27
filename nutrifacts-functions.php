@@ -46,14 +46,14 @@ function nf_get_result($label, $fieldname1, $fieldname2){
 	$result = $nutrition_facts[$fieldname1] + $nutrition_facts[$fieldname2];
 	$percentage_result = round( $result / $nutrition_facts['servings_size'] * 100);
 
-	echo '<div>';
+	
 		echo '<p>';
 			echo $label .' '. $result . 'g';
-		echo '<p>';	
+		echo '</p>';	
 		echo '<p>';
 			echo $percentage_result . '%';
-		echo '<p>';	
-	echo '<div>';
+		echo '</p>';	
+	
 
 }
 
@@ -64,12 +64,12 @@ function nf_get_percentage($label_element, $fieldname){
 
 	$percentage_element = round( $element / $nutrition_facts['servings_size'] * 100);
 
-	echo '<div>';
+	
 		echo '<p>';
 			echo $label_element .' '. $element . 'g';
-		echo '<p>';	
+		echo '</p>';	
 		echo '<p>';
 			echo $percentage_element . '%';
-		echo '<p>';	
-	echo '<div>';
+		echo '</p>';	
+	
 }

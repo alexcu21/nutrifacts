@@ -65,10 +65,10 @@ echo '</pre>';
 			<div class="nutrition-body">
 				<div class="calories">
 					<p>Amount Per Serving</p>
-					<p>Calories <?php echo $nutrition_facts['_calories']; ?></p>
+					<p><strong>Calories</strong> <?php echo $nutrition_facts['_calories']; ?></p>
 				</div>
 				<div class="percentage-values">
-					<p>% Daily Value*</p>
+					<p class="info-text">% Daily Value*</p>
 					<div class="daily-value total_fat">
 						<?php nf_get_result('Total Fat', 'saturated_fat', 'trans_fat'); ?>
 					</div>
@@ -104,19 +104,26 @@ echo '</pre>';
 						<?php nf_get_percentage('Protein', 'protein'); ?>
 					</div>
 
-					<div class="vitamins">
+					
+				</div>
+
+				<div class="vitamins">
 						<div class="vit-row1">
-							<p>Vitamin A <?php echo $nutrition_facts['vitamin_a'];  ?></p>
-							<p>Vitamin C <?php echo $nutrition_facts['vitamin_c'];  ?></p>
+							<p>Vitamin A <?php echo $nutrition_facts['vitamin_a']; ?>%</p>
+							<p>Vitamin C <?php echo $nutrition_facts['vitamin_c']; ?>%</p>
 						</div>
 						<div class="vit-row2">
-							<p>Calcium <?php echo $nutrition_facts['Calcium'];  ?></p>
-							<p>Iron <?php echo $nutrition_facts['Iron'];  ?></p>
+							<p>Calcium <?php echo $nutrition_facts['calcium'];  ?>%</p>
+							<p>Iron <?php echo $nutrition_facts['iron'];  ?>%</p>
 						</div>
 					</div>
-				</div>
+
 			</div>
-			
+			<div class="nutrition-footer">
+				<p class="footer">
+					* Percent Daily Values are based on a 2,000 calorie diet. yourdaily values may be higher or lower depending on your calorie needs.
+				</p>
+			</div>
 		</div>
 	</div>
 
