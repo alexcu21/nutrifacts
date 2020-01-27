@@ -76,7 +76,7 @@ function nf_get_percentage($label_element, $fieldname){
 
 
 
-//callbacks for endpoint
+//callbacks for endpoints
 
 function nf_get_products_items() {
   $args = array (
