@@ -1,10 +1,11 @@
 /* styles for nutrition facts card */
 
 .nutrition-card {
-    width: 25%;
+    width: 75%;
     font-size: 0.8rem;
      border: 1px solid black;
     padding: 5px;
+    margin:0 auto;
 }
 
 .nutrition-header {
