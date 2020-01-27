@@ -53,6 +53,8 @@ function nf_product_posttype() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
+		'rest_base'          => 'products',
+    'rest_controller_class' => 'WP_REST_Posts_Controller',
 	);
 	register_post_type( 'products', $args );
 
@@ -91,8 +93,10 @@ function nf_product_taxonomy() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
+		'rewrite'               => array( 'slug' => 'product_category' ),
 		'show_tagcloud'              => true,
 		'show_in_rest'               => true,
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
 	);
 	register_taxonomy( 'product_category', array( 'products' ), $args );
 

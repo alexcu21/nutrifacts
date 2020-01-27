@@ -73,3 +73,91 @@ function nf_get_percentage($label_element, $fieldname){
 		echo '</p>';	
 	
 }
+
+
+
+//callbacks for endpoint
+
+function nf_get_products_items() {
+  $args = array (
+    'post_type' => 'products',
+  );
+ 
+  $items = array();
+ 
+  if ( $products = get_posts( $args ) ) {
+    foreach ( $products as $product ) {
+      $items[] = array(
+        'id' => $product->ID,
+        'title' => $product->post_title,
+      	'brand' => $product->brand,
+      	'rating' => $product->product_rating,
+      	'featured' => $product->featured,
+      );
+    }
+  }
+  return $items;
+}
+
+function nf_get_brand_items() {
+  $args = array (
+    'post_type' => 'brands',
+  );
+ 
+  $items = array();
+ 
+  if ( $brands = get_posts( $args ) ) {
+    foreach ( $brands as $brand ) {
+      $items[] = array(
+        'id' => $brand->ID,
+        'title' => $brand->post_title,
+      );
+    }
+  }
+  return $items;
+}
+
+function nf_get_categories() {
+  
+  $items = array();
+
+  if( $terms = get_terms( 'product_category' ) ){
+  		foreach( $terms as $term ){
+  			$items[] = array(
+  				'id' => $term->term_id,
+  				'name' => $term->name,
+  			);
+  		}
+  }
+ 
+  return $items;
+}
+
+// registring new enpoints
+
+/*
+* /wp-json/nutrition-facts/v1/product-categories (products categories endpoint)
+* /wp-json/nutrition-facts/v1/products (products list endpoint)
+* /wp-json/nutrition-facts/v1/brands (products list endpoint)
+*/
+
+
+function nf_register_api_endpoints() {
+  register_rest_route( 'nutrition-facts/v1', '/products', array(
+    'methods' => 'GET',
+    'callback' => 'nf_get_products_items',
+  ) );
+
+   register_rest_route( 'nutrition-facts/v1', '/brands', array(
+    'methods' => 'GET',
+    'callback' => 'nf_get_brand_items',
+  ) );
+
+
+   register_rest_route( 'nutrition-facts/v1', '/product-categories', array(
+    'methods' => 'GET',
+    'callback' => 'nf_get_categories',
+  ) );
+}
+ 
+add_action( 'rest_api_init', 'nf_register_api_endpoints' );
