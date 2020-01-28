@@ -161,3 +161,4 @@ function nf_register_api_endpoints() {
 }
  
 add_action( 'rest_api_init', 'nf_register_api_endpoints' );
+
